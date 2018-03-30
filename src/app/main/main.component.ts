@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MAIN_CONST } from './main.constants';
+declare var $:any;
+
 
 
 @Component({
@@ -15,6 +17,7 @@ export class MainComponent {
   private resetTimeDropDown: boolean;
   private timestamp: any = [];
   private duration: string;
+  myInnerHeight = window.innerHeight - 135;
 
   constructor() {
     const curr_time = new Date().getTime();

@@ -26,25 +26,43 @@
         <div class="servers positionRelative brdBRL marginBottom10">
             <div class="col-lg-1 col-md-1 paddingLeft0">
                 <ul class="lft_navi">
-                    <li [ngClass]="{lft_navy_active : tab.overview}" (click)="view('overview')">
+                    <li  [ngClass]="{lft_navy_active : tab.overview}" (click)="view('overview');">
+                       <a href="#overview_cont">
                         <div [ngClass]="{overview_active_img : tab.overview, overview_img : !tab.overview}" class="cursor"></div>
                         <div>Overview</div>
+                       </a>
                     </li>
                     <li [ngClass]="{lft_navy_active : tab.accounts}" (click)="view('accounts')">
-                        <div [ngClass]="{accounts_active_img : tab.accounts, accounts_img : !tab.accounts}" class="cursor"></div>
+                       <a href="#accounts_cont">
+                        <div  class="cursor">
+                            <i class="fa fa-users"></i>
+                        </div>
                         <div>Accounts</div>
+                       </a>
                     </li>
                     <li [ngClass]="{lft_navy_active : tab.assets}" (click)="view('assets')">
-                        <div [ngClass]="{accounts_active_img : tab.assets, accounts_img : !tab.assets}" class="cursor"></div>
+                       <a href="#assets_cont">
+                        <div  class="cursor">
+                            <i class="fa fa-tasks"></i>    
+                        </div>
                         <div>Assets</div>
+                       </a>
                     </li>
                     <li [ngClass]="{lft_navy_active : tab.cases}" (click)="view('cases')">
-                        <div [ngClass]="{accounts_active_img : tab.cases, accounts_img : !tab.cases}" class="cursor"></div>
+                       <a href="#cases_cont">
+                        <div class="cursor">
+                            <i class="fa fa-list-alt"></i>
+                        </div>
                         <div>Cases</div>
+                       </a>
                     </li>
                     <li [ngClass]="{lft_navy_active : tab.contacts}" (click)="view('contacts')">
-                        <div [ngClass]="{accounts_active_img : tab.contacts, accounts_img : !tab.contacts}" class="cursor"></div>
-                        <div>Contacts</div>
+                        <a href="#contacts_cont">
+                            <div  class="cursor">
+                                <i class="fa fa-contao"></i>
+                            </div>
+                            <div>Contacts</div>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -56,33 +74,30 @@
                         </div>
                     </div>
                 </div> -->
-                <div>
-                    <div>
+                <div id="animate_scroll" class="maintab_cont" [ngStyle]="{'height':myInnerHeight+'px'}" style="overflow:auto;">
+                    <div id="overview_cont" class="tab_container">
                         <h1>Overview</h1>
                         <br><br><br>
                         <h3>Coming Soon</h3>
                     </div>
-                    <hr>
-                    <app-account-list></app-account-list>
-                    <hr>
-                    <div>
+                    <div id="accounts_cont" class="tab_container">
+                        <app-account-list></app-account-list>
+                    </div>
+                    <div id="assets_cont" class="tab_container">
                         <h1>Assets</h1>
                         <br><br><br>
                         <h3>Coming Soon</h3>
                     </div>
-                    <hr>
-                    <div>
+                    <div id="cases_cont" class="tab_container">
                         <h1>Cases</h1>
                         <br><br><br>
                         <h3>Coming Soon</h3>
                     </div>
-                    <hr>
-                    <div>
+                    <div id="contacts_cont" class="tab_container">
                         <h1>Contacts</h1>
                         <br><br><br>
                         <h3>Coming Soon</h3>
                     </div>
-                    <hr>
                     <!-- <vm-view [hidden]="!tab.vm" (notifyServerFail)='loadFail($event)' (notifyZoom)='onRangeChanged($event)' (notifyZoomOut)='zoomOut($event)'
                       (notifyLoad)='dataLoaded($event)' [range]="rangeInput" [nodeData]="nodeData" [viewTab]="tab" [lastUpdateTime]="lastUpdateTime"></vm-view> -->
                 </div>
