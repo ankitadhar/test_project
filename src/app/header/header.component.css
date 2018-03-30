@@ -1,0 +1,89 @@
+/** Copyright (c) 2016-17 MapleLabs Inc **/
+
+.headerContainer{
+    background: rgb(25, 25, 25);
+    height: 50px;
+    padding: 0px 0px;
+}
+
+.txt-whiteColor{
+    color: #fff !important;
+    outline: none;
+    text-decoration: none !important;
+  }
+
+  .eaglelogo{
+    position: relative;
+    top:4px;
+    left: 4px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .eaglelogo span.logo_txt{
+    position: relative;
+    top: 5px;
+    letter-spacing: 0.5px;
+  }
+
+  .logoImg{
+    height: 25px;
+    margin: 10px;
+  }
+  
+.version_txt{
+    color: #C4C4C4 !important;
+    outline: none;
+    text-decoration: none !important;
+    position: relative;
+    top: 5px;
+    font-family: OpenSans-Light;
+    left: -3px; 
+    font-size: 11px;
+  }
+  
+.logout-Icon{
+    float: right;
+    position: relative; 
+    cursor: pointer; 
+} 
+.logout-Icon a#dropdownMenu2{
+  color: #fff;
+  padding: 1px 15px;
+  line-height: 50px;
+  border-left: 1px solid #fff;
+  text-decoration: none;
+  float: left;
+}
+.logout-Icon img{
+    position: relative;
+    top: -1px;
+} 
+.logout-Icon .dropdown-menu{
+  right: 0px;
+  border-radius: 0px !important;
+  left: auto !important;
+  background: #fff; 
+}
+.logout-Icon .dropdown-menu a{
+  color: #4A4A4A;
+  text-decoration: none;
+  line-height: 30px;
+  padding-left: 15px;
+}
+.log-icon {
+    background: url(assets/images/icon-log.png) center 20px no-repeat; 
+    float: left;
+    cursor: pointer;
+    padding: 15px 2px; 
+    border-left: 1px solid #fff; 
+    height: 50px;
+    width: 60px;
+    text-align: center;
+}
+
+.logout-Icon{
+    float: right;
+    position: relative; 
+    cursor: pointer; 
+} 

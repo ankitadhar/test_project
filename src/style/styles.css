@@ -1,0 +1,370 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+.marginTop5 {
+    margin-top: 5px;
+  }
+  .marginBottom10 {
+    margin-bottom: 10px
+  }
+  .marginBottom5 {
+    margin-bottom: 5px
+  }
+  .marginTop15 {
+    margin-top: 15px !important;
+  }
+  .marginTop18 {
+    margin-top: 18px;
+  }
+  .marginTop12 {
+    margin-top: 12px;
+  }
+  .marRight5 {
+    margin-right: 5px;
+  }
+  .marginBottom30 {
+    margin-bottom: 30px;
+  }
+  .marginBottom20 {
+    margin-bottom: 20px;
+  }
+  .marginTop10 {
+    margin-top: 10px;
+  }
+  .marginLeft10 {
+    margin-left: 10px !important;
+  }
+  .marginLeft5 {
+    margin-left: 5px;
+  }
+  .positionRelative {
+    position: relative;
+  }
+  .padRight10 {
+    padding-right: 10px;
+  }
+  .padRight5 {
+    padding-right: 5px;
+  }
+  .padRightLeft10 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .padRight0 {
+    padding-right: 0px;
+  }
+  .padLeft0 {
+    padding-left: 0px !important;
+  }
+  .paddingLeft15 {
+    padding-left: 15px;
+  }
+  .paddingLeft0 {
+    padding-left: 0px;
+  }
+  .paddingRight0 {
+    padding-right: 0px !important;
+  }
+  .paddingLeft5 {
+    padding-left: 5px;
+  }
+  .paddingLeft10 {
+    padding-left: 10px;
+  }
+  .paddingRight5 {
+    padding-right: 5px !important;
+  }
+  .noPad {
+    padding: 0px !important;
+  }
+  .pad10 {
+    padding: 10px;
+  }
+  .pad5 {
+    padding: 5px;
+  }
+  .pad25 {
+    padding: 25px;
+  }
+  .pad35 {
+    padding: 0px 20px 0px 35px
+  }
+  .pad18 {
+    padding: 5px 20px 0px 0px
+  }
+  .paddingTop15 {
+    padding-top: 15px;
+  }
+  .paddingTop5 {
+    padding-top: 5px;
+  }
+  .innerPad {
+    padding: 18px 15px 6px 15px;
+  }
+  .paddingLeft15 {
+    padding-left: 15px !important;
+  }
+  .paddingLeft20 {
+    padding-left: 20px !important;
+  }
+  .padTB10 {
+    padding: 10px 0px;
+  }
+  .padTop10 {
+    padding-top: 10px;
+  }
+  .padBottom10 {
+    padding-bottom: 10px;
+  }
+  .padBottom20 {
+    padding-bottom: 20px;
+  }
+  .paadRight15 {
+    padding: 0px 15px 0px 0px;
+  }
+  .paddingLR10 {
+    padding: 8px 20px
+  }
+  .paddingContorl {
+    padding-left: 0px;
+    padding-right: 12px;
+  }
+  .brd {
+    border: 1px solid #dbdee0
+  }
+  .brdBRL {
+    border-top: 0px;
+    overflow: hidden;
+  }
+  .brd-RLB {
+    border: 1px solid #dbdee0;
+    border-top: 0px;
+  }
+  .brdRL {
+    border-left: 0px !important;
+    border-right: 0px !important;
+  }
+  .brd-RTB {
+    border: 1px solid #dbdee0;
+  }
+  .brd_btm,
+  .brd-btm {
+    border-bottom: 1px solid #dbdee0
+  }
+  .brd-right {
+    border-right: 1px solid #dbdee0
+  }
+  .brd-left {
+    border-left: 1px solid #dbdee0
+  }
+  .brd-top {
+    border-top: 1px solid #dbdee0
+  }
+  .brd_0 {
+    border: 0px !important;
+  }
+  .font11{
+    font-size: 11px;
+  }
+  .font12 {
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .font15 {
+    font-size: 15px;
+  }
+  .wid40 {
+    width: 40%;
+  }
+  .wid49 {
+    width: 49%;
+  }
+  .wid60 {
+    width: 60%;
+  }
+  .wid20 {
+    width: 20%;
+  }
+  .wid80 {
+    width: 80% !important;
+  }
+  .wid27 {
+    width: 27%;
+  }
+  .wid30 {
+    width: 30%;
+  }
+  .wid70 {
+    width: 70%;
+  }
+  .wid75 {
+    width: 75%;
+  }
+  .wid50 {
+    width: 50%;
+  }
+  .wid33 {
+    width: 33.22%
+  }
+  .width100 {
+    width: 100%;
+  }
+  .width110 {
+    width: 110px;
+  }
+  .txt_align {
+    text-align: center !important;
+  }
+  label {
+    font-weight: normal !important
+  }
+  .clear {
+    clear: both;
+  }
+  .overflowX{
+    overflow-x: hidden;
+  }
+  .center_align {
+    text-align : center !important;
+  }
+  .form-control{
+      height: 28px !important;
+      font-size: 12px !important;
+      border-radius: 0px;
+  }
+  
+.dropdown-menu {
+  font-size: 12px;
+  padding: 0px !important;
+  overflow-y: auto;
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+  border-bottom: 1px solid #dbdee0;
+  border-right: 1px solid #dbdee0;
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+  line-height: 22px;
+}
+.bootstrap-select.btn-group .dropdown-menu li:last-child {
+  border-bottom: 0px;
+}
+.dynamicChart .dropup .dropdown-menu {
+  top: 25px !important;
+}
+.dropdown-header{
+      padding: 8px 10px !important;
+}
+.dropdown-menu .divider{
+  margin: -1px 0 !important
+}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+  color: #1ba8ca !important;
+  right: 5px !important;
+}
+.bootstrap-select.btn-group .dropdown-menu li a.opt{
+    right: 6px !important; 
+}
+
+
+/* timer slider style modified */
+
+timeline .ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  cursor: default;
+  outline: none;
+  border-radius: 0;
+  background: transparent url(../assets/images/slider-btn.png) -2px -1px no-repeat !important;
+  width: 33px !important;
+  height: 33px !important;
+  border: 0px !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  /* border: 1px solid #d6d6d6;
+  background: #fff; */
+  font-weight: 400;
+  color: #555;
+}
+.ui-slider-handle #slider_tooltip {
+  position: absolute;
+  top: -30px;
+  left: -27px;
+  padding: 4px;
+  color: #000;
+  font-size: 11px;
+  min-width: 68px;
+  text-align: center;
+}
+timeline .ui-slider-pips .ui-slider-pip {
+  z-index: 1;
+  top: 10px !important;
+}
+timeline .ui-slider-pips .ui-slider-line {
+  height: 8px !important;
+  background: #d2d2d2;
+}
+timeline .ui-slider-pips .ui-slider-pip-inrange .ui-slider-line {
+  background: #d2d2d2;
+}
+.ui-slider-pips:not(.ui-slider-disabled) .ui-slider-pip:hover .ui-slider-label {
+  color: #666 !important;
+  font-weight: normal !important;
+}
+cluster-view .ui-slider-horizontal .ui-slider-handle {
+  top: -8px !important;
+}
+timeline .ui-slider-horizontal .ui-slider-handle {
+  top: -7px !important;
+}
+.ui-slider-horizontal .ui-slider-handle {
+  margin-left: -.6em;
+}
+.ui-slider .ui-slider-range{
+  position: absolute;
+  z-index: 1;
+  font-size: .7em;
+  display: block;
+  border-radius: 3px; 
+  box-shadow : none !important; 
+  background: #26bbf0 !important;
+}
+.ui-slider-horizontal.ui-slider-pips{
+ background: #d6d6d6 !important;
+  border-radius: 2px;
+  height: 5px;
+  box-shadow: none;
+  /*border: 1px solid #e6e6e6 !important;*/
+
+}
+.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
+}
+.ui-slider-pips .ui-slider-label{
+  top: 10px !important;
+  margin-left: -2.5em !important;
+  width: 5em !important; 
+  color: #817e8b;
+}
+.timerOuter {
+  background: #fff;
+  height: 65px;
+  padding: 12px 2% 19px 2%;
+  border-bottom: 1px solid #dbdee0;
+  margin-bottom: 8px;
+}
+.ui-slider {
+  position: relative;
+  text-align: left;
+  /* background: #838688;
+  border: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.6); */
+}
+  /* timeline */

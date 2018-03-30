@@ -1,0 +1,36 @@
+<h1>Accounts</h1>
+
+<table cellspacing="0" cellpadding="0" class="table clear fixedTable summaryDetails computeTable analyzeGrid">
+        <thead>
+                <tr>
+                        <th (click)="sort($event,'Name')">
+                                Account Name
+                                <i class="fa" [ngClass]="{'fa-sort': column != 'Name', 'fa-sort-asc': (column == 'Name' && isDesc), 'fa-sort-desc': (column == 'Name' && !isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'CreatedDate')">
+                                Created Date
+                                <i class="fa" [ngClass]="{'fa-sort': column != 'CreatedDate', 'fa-sort-asc': (column == 'CreatedDate' && isDesc), 'fa-sort-desc': (column == 'CreatedDate' && !isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'LastActivityDate')">
+                                Last Acvity Date
+                                <i class="fa" [ngClass]="{'fa-sort': column != 'LastActivityDate', 'fa-sort-asc': (column == 'LastActivityDate' && isDesc), 'fa-sort-desc': (column == 'LastActivityDate' && !isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'LastModifiedDate')">
+                                Last Modified Date
+                                <i class="fa" [ngClass]="{'fa-sort': column != 'LastModifiedDate', 'fa-sort-asc': (column == 'LastModifiedDate' && isDesc), 'fa-sort-desc': (column == 'LastModifiedDate' && !isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                </tr>
+        </thead>
+        <tbody *ngFor="let account of accountList | orderBy: {property: column, direction: direction}">
+                <tr>
+                        <td>{{account._source.Name}}</td>
+                        <td>{{account._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{account._source.LastActivityDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{account._source.LastModifiedDate | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+        </tbody>
+</table>

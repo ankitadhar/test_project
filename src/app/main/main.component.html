@@ -1,0 +1,92 @@
+<!-- Copyright (c) 2016-17 MapleLabs Inc -->
+<div (click)="timeLineToggle()" [hidden]="loading">
+    <img src="../../../assets/images/arrow-down.png" class="timeSlider_arrow_down" [hidden]="timelineShown" />
+    <img src="../../../assets/images/arrow-up.png" class="timeSlider_arrow_up" [hidden]="!timelineShown" />
+</div>
+<div [ngClass]="{breadCrumb: timelineShown, minitimeline: !timelineShown}">
+    <div class="clear timeslider" [hidden]="!timelineShown">
+        <div style="width: 98%; margin:0px auto">
+            <div class="sliderPosition">
+                <timeline [range]="rangeInput" (notify)='onRangeChanged($event)' [timelineShown]="timelineShown" [resetTimeDropDown]="resetTimeDropDown"></timeline>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="intervalDiv cursor dropdown">
+    <div class="clear pull-right dropdown-toggle" data-toggle="dropdown" data-target="dropDownTime">
+        <label>{{duration}}</label>
+        <i class="fa fa-caret-down downArrow"></i>
+    </div>
+    <ul class="durationItems dropdown-menu" id="dropDownTime">
+        <li *ngFor="let duration of timestamp" (click)="getDurationDetails(duration.value)">{{duration.label}}</li>
+    </ul>
+</div>
+<div class="clear outerContainer" [hidden]="loading">
+    <div class=" col-lg-12 serverBgColor analyzeInnerPadding padLeft0 paddingRight0">
+        <div class="servers positionRelative brdBRL marginBottom10">
+            <div class="col-lg-1 col-md-1 paddingLeft0">
+                <ul class="lft_navi">
+                    <li [ngClass]="{lft_navy_active : tab.overview}" (click)="view('overview')">
+                        <div [ngClass]="{overview_active_img : tab.overview, overview_img : !tab.overview}" class="cursor"></div>
+                        <div>Overview</div>
+                    </li>
+                    <li [ngClass]="{lft_navy_active : tab.accounts}" (click)="view('accounts')">
+                        <div [ngClass]="{accounts_active_img : tab.accounts, accounts_img : !tab.accounts}" class="cursor"></div>
+                        <div>Accounts</div>
+                    </li>
+                    <li [ngClass]="{lft_navy_active : tab.assets}" (click)="view('assets')">
+                        <div [ngClass]="{accounts_active_img : tab.assets, accounts_img : !tab.assets}" class="cursor"></div>
+                        <div>Assets</div>
+                    </li>
+                    <li [ngClass]="{lft_navy_active : tab.cases}" (click)="view('cases')">
+                        <div [ngClass]="{accounts_active_img : tab.cases, accounts_img : !tab.cases}" class="cursor"></div>
+                        <div>Cases</div>
+                    </li>
+                    <li [ngClass]="{lft_navy_active : tab.contacts}" (click)="view('contacts')">
+                        <div [ngClass]="{accounts_active_img : tab.contacts, accounts_img : !tab.contacts}" class="cursor"></div>
+                        <div>Contacts</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-11 col-md-11 paddingLeft0 paddingRight0">
+                <!-- <div class="clear timeslider">
+                    <div style="width: 98%; margin:0px auto">
+                        <div class="sliderPosition">
+                            <timeline [range]="rangeInput" (notify)='onRangeChanged($event)' [timelineShown]="timelineShown" [resetTimeDropDown]="resetTimeDropDown"></timeline>
+                        </div>
+                    </div>
+                </div> -->
+                <div>
+                    <div>
+                        <h1>Overview</h1>
+                        <br><br><br>
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <hr>
+                    <app-account-list></app-account-list>
+                    <hr>
+                    <div>
+                        <h1>Assets</h1>
+                        <br><br><br>
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <hr>
+                    <div>
+                        <h1>Cases</h1>
+                        <br><br><br>
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <hr>
+                    <div>
+                        <h1>Contacts</h1>
+                        <br><br><br>
+                        <h3>Coming Soon</h3>
+                    </div>
+                    <hr>
+                    <!-- <vm-view [hidden]="!tab.vm" (notifyServerFail)='loadFail($event)' (notifyZoom)='onRangeChanged($event)' (notifyZoomOut)='zoomOut($event)'
+                      (notifyLoad)='dataLoaded($event)' [range]="rangeInput" [nodeData]="nodeData" [viewTab]="tab" [lastUpdateTime]="lastUpdateTime"></vm-view> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
