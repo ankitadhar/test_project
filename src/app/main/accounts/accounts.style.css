@@ -35,3 +35,7 @@
 tbody tr td:first-child{
     cursor: pointer;
 }
+tbody tr td:first-child:hover{
+    color:#337ab7;
+    text-decoration: underline;
+}

@@ -53,3 +53,9 @@
     cursor: pointer;
     letter-spacing: .7px;
 }
+.home-icon{
+    position: absolute;
+    top: 7px;
+    left: 48px;
+    font-size: 28px;
+}
