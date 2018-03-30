@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
+import { AccountModule } from './account/account.module';
 // import { ROUTES } from './app.routes';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MainModule } from './main/main.module';
     BrowserModule,
     HttpModule,
     SharedModule.forRoot(),
-    MainModule
+    MainModule,
+    AccountModule
   ],
   providers: [
     {

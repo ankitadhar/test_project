@@ -24,19 +24,19 @@ export class MainComponent {
       'accounts': false
     };
     this.rangeInput = {
-      "gte": curr_time - (30 * 24 * 60 * 60000),
-      "lte": curr_time,
-      "resetMarker": true,
-      "refreshTime": true
+      'gte': curr_time - (30 * 24 * 60 * 60000),
+      'lte': curr_time,
+      'resetMarker': true,
+      'refreshTime': true
     };
     this.duration = 'Last 1 Month';
     this.timestamp = JSON.parse(stringifiedConst)['DURATIONS'];
-    this.timelineShown = true;
+    this.timelineShown = false;
     this.resetTimeDropDown = false;
   }
 
   timeLineToggle() {
-    let component = this;
+    const component = this;
     component.timelineShown = !this.timelineShown;
   }
 
@@ -53,14 +53,14 @@ export class MainComponent {
   getDurationDetails(duration) {
     const component = this;
     component.duration = duration;
-    let curr_time = new Date().getTime();
+    const curr_time = new Date().getTime();
 
     component.rangeInput = {
       'gte': curr_time - (30 * 24 * 60 * 60000),
       'lte': curr_time,
       'resetMarker': true,
       'refreshTime': true
-    }
+    };
 
     switch (duration) {
       case 'Last 1 Month': component.rangeInput['gte'] = curr_time - (30 * 24 * 60 * 60000); break;
@@ -70,11 +70,10 @@ export class MainComponent {
   }
 
   onRangeChanged(message: Object): void {
-    let component = this;
+    const component = this;
     component.rangeInput = message;
   }
 
   ngOnInit() {
-
   }
 }

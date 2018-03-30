@@ -17,11 +17,13 @@ export class ApiAccountsService extends ApiBaseService {
     }
 
     buildURLs() {
-        this.accountsURL = this.queryServer + '/sfdcaccounts?index=0&size=200';
+        this.accountsURL = this.queryServer + '/sfdcaccounts';
     }
 
-    getAllAccounts() {
-        return [
+    getAllAccounts(listAttr): Observable<any> {
+        const service = this;
+        const fetchAccountsURL = service.accountsURL + '?index=' + listAttr['index'] + '&size=' + listAttr['size'];
+        /* return [
             {
                 "_index": "sfdcaccount",
                 "_type": "Customer",
@@ -5440,8 +5442,8 @@ export class ApiAccountsService extends ApiBaseService {
                     "type": "Customer"
                 }
             }
-        ];
-        // return this.get(this.accountsURL);
+        ]; */
+        return service.get(fetchAccountsURL);
     }
 
 }

@@ -9,8 +9,8 @@ export class AccountsService {
     constructor(public apiService: ApiService) {
     }
 
-    getAllAccounts() {
-        return this.apiService.getAllAccounts();
+    getAllAccounts(listAttr) {
+        return this.apiService.getAllAccounts(listAttr).map((res: any) => res);
         /* return [
             {
                 "_index": "sfdcaccount",

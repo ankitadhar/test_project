@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
-// import { AccountListComponent } from './index';
+import { MainComponent } from './index';
 
 
-export const accountRoutes: Route[] = [
+export const mainRoutes: Route[] = [
     {
-       /*  path: 'accounts',
-        component: AccountListComponent */
+        path: 'dashboard',
+        component: MainComponent
     }
 ];

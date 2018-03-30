@@ -5,5 +5,5 @@ import { AbstractApiService } from './api.interface';
 @Injectable()
 export abstract class ApiService implements AbstractApiService {
     abstract onReceiveMessage: EventEmitter<any>;
-    abstract getAllAccounts();
+    abstract getAllAccounts(listAttr): Observable<any>;
 }

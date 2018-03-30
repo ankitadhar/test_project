@@ -8,7 +8,8 @@ export class ConfigService {
     private login;
 
     constructor() {
-        this.queryURL = window.location.protocol + '//'+ window.location.host;
+        // this.queryURL = window.location.protocol + '//'+ window.location.host;
+        this.queryURL = 'http://10.2.53.183:1338';
         this.login = false;
     }
 
