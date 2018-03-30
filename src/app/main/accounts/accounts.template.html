@@ -1,13 +1,13 @@
 <h1>Accounts</h1>
 
 <div>
-        <span class="pull-right">
+        <span class="pull-right search" >
                 <input type="text" placeholder="Search" name="" class="searchBox" [(ngModel)]="filterHOST" />
                 <i class="fa fa-search" aria-hidden="true"></i>
         </span>
 </div>
 
-<table cellspacing="0" cellpadding="0" class="table clear fixedTable summaryDetails computeTable analyzeGrid">
+<table  class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
         <thead>
                 <tr>
                         <th (click)="sort($event,'Name')">
