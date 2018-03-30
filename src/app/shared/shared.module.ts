@@ -41,11 +41,13 @@ export class SharedModule {
                 ApiV1Service,
                 {
                     provide: ApiService,
-                    useFactory: (config: ConfigService, injector: Injector) => {
-                        return injector.get(ApiV1Service);
-                    },
+                    useFactory: apiLoader,
                     deps: [ConfigService, Injector]
                 }]
         };
     }
+}
+
+export function apiLoader(config: ConfigService, injector: Injector) {
+    return injector.get(ApiV1Service);
 }
