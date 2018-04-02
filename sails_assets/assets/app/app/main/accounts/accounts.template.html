@@ -1,13 +1,13 @@
 <h1>Accounts</h1>
 
 <div>
-        <span class="pull-right search" >
+        <span class="pull-right search">
                 <input type="text" placeholder="Search" name="" class="searchBox" [(ngModel)]="filterHOST" />
                 <i class="fa fa-search" aria-hidden="true"></i>
         </span>
 </div>
 
-<table  class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+<table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
         <thead>
                 <tr>
                         <th (click)="sort($event,'Name')">
@@ -31,6 +31,11 @@
                                         aria-hidden="true"> </i>
                         </th>
                 </tr>
+                <tr>
+                        <th colspan="4" *ngIf="accountList.length < 1" class="italic-font">
+                                No Data Found
+                        </th>
+                </tr>
         </thead>
         <tbody *ngFor="let account of accountList | orderBy: {property: column, direction: direction}">
                 <tr>
@@ -40,14 +45,14 @@
                         <td>{{account._source.LastModifiedDate | date: 'dd/MM/yyyy'}}</td>
                 </tr>
         </tbody>
-        <div class="pagination">
-                <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 1}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 2}" href="javascript:void(0)" (click)="loadPage(2)">2</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 3}" href="javascript:void(0)" (click)="loadPage(3)">3</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 4}" href="javascript:void(0)" (click)="loadPage(4)">4</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 5}" href="javascript:void(0)" (click)="loadPage(5)">5</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 6}" href="javascript:void(0)" (click)="loadPage(6)">6</a>
-                <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
-        </div>
 </table>
+<div class="pagination" *ngIf="totalCount > 8">
+        <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 1}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 2}" href="javascript:void(0)" (click)="loadPage(2)">2</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 3}" href="javascript:void(0)" (click)="loadPage(3)">3</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 4}" href="javascript:void(0)" (click)="loadPage(4)">4</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 5}" href="javascript:void(0)" (click)="loadPage(5)">5</a>
+        <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 6}" href="javascript:void(0)" (click)="loadPage(6)">6</a>
+        <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
+</div>

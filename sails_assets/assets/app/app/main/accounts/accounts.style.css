@@ -1,0 +1,41 @@
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #aec3af;
+    color: white;
+    border-radius: 5px;
+}
+.search{
+    margin-bottom:10px;
+    position: relative;
+}
+.search input{
+    padding-left: 5px;
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    height: 28px;
+}
+.search i{
+    position: absolute;
+    right: 7px;
+    top: 6px;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+tbody tr td:first-child{
+    cursor: pointer;
+}
+tbody tr td:first-child:hover{
+    color:#337ab7;
+    text-decoration: underline;
+}

@@ -1,0 +1,28 @@
+<div class="" style="position:relative;" *ngIf="accountId != ''">
+    <a href="/#/dashboard"><i class="fa fa-home home-icon" ></i></a>
+    <ul class="nav nav-tabs navigation">
+        <li class="active"><a data-toggle="tab" href="#overview">Account Details</a></li>
+        <li><a data-toggle="tab" href="#assets">Assets</a></li>
+        <li><a data-toggle="tab" href="#cases">Cases</a></li>
+        <li><a data-toggle="tab" href="#contacts">Contacts</a></li>
+        <li><a data-toggle="tab" href="#fi">Field Issues</a></li>
+    </ul>
+    <div class="tab-content overflow" [ngStyle]="{'max-height':windowInnerHeight+'px'}">
+        <div id="overview" class="tab-pane fade in active">
+            <button class="button pull-right">Upload Bundle</button>
+        </div>
+        <div id="assets" class="tab-pane fade">
+            <app-account-assets [accountId]="accountId"></app-account-assets>
+        </div>
+        <div id="cases" class="tab-pane fade">
+            <app-account-cases [accountId]="accountId"></app-account-cases>
+        </div>
+        <div id="contacts" class="tab-pane fade">
+            <app-account-contacts [accountId]="accountId"></app-account-contacts>
+        </div>
+        <div id="fi" class="tab-pane fade">
+            <h3>Coming Soon</h3>
+        </div>
+
+    </div>
+</div>
