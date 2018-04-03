@@ -1,0 +1,29 @@
+.bi_reports{
+    position: relative;
+    background: #fff;
+    clear: both;
+}
+.nav{
+    background: #fff;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.nav_header{
+    background: #ccc;
+    padding: 3px 13px;
+}
+.nav .list-item{
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+iframe{
+    border: 1px solid #ddd;
+    height: 99%;
+    width: 100%;
+}
+.active{
+    background:#eee;
+}
+.pad0{
+    padding: 0px !important;
+}

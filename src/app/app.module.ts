@@ -11,12 +11,14 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
 import { AccountModule } from './account/account.module';
+import {BireportsComponent} from './bireports/bireports.component'
 // import { ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    BireportsComponent
   ],
   imports: [
     BrowserModule,

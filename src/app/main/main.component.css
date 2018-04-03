@@ -34,7 +34,6 @@
   padding: 2px 12% 0.2% 1%;
   border-bottom: 1px solid #dbdee0;
   margin-bottom: 8px;
-  height: 70px;
 }
 .breadCrumb a {
   text-decoration: none;
@@ -52,7 +51,7 @@
   padding: 2px 12% 0.2% 1%;
   border-bottom: 1px solid #dbdee0;
   margin-bottom: 8px;
-  height: 40px;
+  min-height: 40px;
 }
 
 .timeSlider_arrow_up {
