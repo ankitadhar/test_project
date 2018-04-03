@@ -47,7 +47,6 @@
     "sails-disk": "~0.10.9",
     "systemjs": "0.19.40",
     "ts-helpers": "^1.1.1",
-    "express": "3.21.2",
     "skipper-s3": "0.5.4",
     "tar-fs": "1.15.0",
     "chmodr": "1.0.2",
