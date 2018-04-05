@@ -2,10 +2,10 @@
 	clear: both;
 	overflow:hidden;
     border-bottom: 1px solid #ddd;
-    padding: 0px 116px;
+    margin-left: 181px;
 }
 .tab-content{
-    padding: 0px 116px;
+    padding: 0px 116px 0px 180px;
 }
 .navigation ul{
 	overflow: hidden;
@@ -54,8 +54,11 @@
     letter-spacing: .7px;
 }
 .home-icon{
-    position: absolute;
-    top: 7px;
-    left: 48px;
+   
     font-size: 28px;
+}
+.home_icon_cont{
+    position: absolute;
+    top: 16px;
+    left: 20px;
 }
