@@ -1,53 +1,83 @@
-<h1>Accounts</h1>
+<h1 class="page_title">Accounts</h1>
 
 <div>
-        <span class="pull-right search" >
+        <span class="pull-right search">
                 <input type="text" placeholder="Search" name="" class="searchBox" [(ngModel)]="filterHOST" />
                 <i class="fa fa-search" aria-hidden="true"></i>
         </span>
 </div>
 
-<table  class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+<table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
         <thead>
                 <tr>
-                        <th (click)="sort($event,'Name')">
+                        <th (click)="sort($event,'Name.keyword')">
                                 Account Name
-                                <i class="fa" [ngClass]="{'fa-sort': column != 'Name', 'fa-sort-asc': (column == 'Name' && isDesc), 'fa-sort-desc': (column == 'Name' && !isDesc) }"
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Name.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Name.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Name.keyword' && listAttr.isDesc) }"
                                         aria-hidden="true"> </i>
                         </th>
                         <th (click)="sort($event,'CreatedDate')">
                                 Created Date
-                                <i class="fa" [ngClass]="{'fa-sort': column != 'CreatedDate', 'fa-sort-asc': (column == 'CreatedDate' && isDesc), 'fa-sort-desc': (column == 'CreatedDate' && !isDesc) }"
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'CreatedDate', 'fa-sort-asc': (listAttr.sortingColumn == 'CreatedDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'CreatedDate' && listAttr.isDesc) }"
                                         aria-hidden="true"> </i>
                         </th>
-                        <th (click)="sort($event,'LastActivityDate')">
-                                Last Acvity Date
-                                <i class="fa" [ngClass]="{'fa-sort': column != 'LastActivityDate', 'fa-sort-asc': (column == 'LastActivityDate' && isDesc), 'fa-sort-desc': (column == 'LastActivityDate' && !isDesc) }"
+                        <th (click)="sort($event,'Type.keyword')">
+                                Type
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Type.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Type.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Type.keyword' && listAttr.isDesc) }"
                                         aria-hidden="true"> </i>
                         </th>
-                        <th (click)="sort($event,'LastModifiedDate')">
-                                Last Modified Date
-                                <i class="fa" [ngClass]="{'fa-sort': column != 'LastModifiedDate', 'fa-sort-asc': (column == 'LastModifiedDate' && isDesc), 'fa-sort-desc': (column == 'LastModifiedDate' && !isDesc) }"
+                        <th (click)="sort($event,'Status__c.keyword')">
+                                Status
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Status__c.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Status__c.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Status__c.keyword' && listAttr.isDesc) }"
                                         aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'Customer_Sentiment__c.keyword')">
+                                Sentiment
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Customer_Sentiment__c.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Customer_Sentiment__c.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Customer_Sentiment__c.keyword' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th>Action(s)</th>
+                </tr>
+                <tr>
+                        <th colspan="6" *ngIf="accountList.length < 1" class="italic-font">
+                                No Data Found
                         </th>
                 </tr>
         </thead>
-        <tbody *ngFor="let account of accountList | orderBy: {property: column, direction: direction}">
+        <tbody *ngFor="let account of accountList">
                 <tr>
-                        <td (click)="viewAccount(account._source.Id)">{{account._source.Name}}</td>
+                        <td (click)="viewAccount(account)">{{account._source.Name}}</td>
                         <td>{{account._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{account._source.LastActivityDate | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{account._source.LastModifiedDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{account._source.Type}}</td>
+                        <td>{{account._source.Status__c}}</td>
+                        <td>{{account._source.Customer_Sentiment__c}}</td>
+                        <td (mouseenter)="actionHover(account)" (mouseleave)="actionLeave(account)" class="actionTD"><span class="cursor"> ... </span>
+                                <div [hidden]="!account.actionView" class="actionTooltip">
+                                        <div class="actionContainer">
+                                                <h3>
+                                                        <u>Actions:</u>
+                                                </h3>
+                                                <div class="actionItem">
+                                                        <i class="fa fa-caret-right arrow_right"></i> <a href="https://login.salesforce.com/{{account._source.Id}}"
+                                                                target="_blank">Launch Salesforce for {{account._source.Name}}</a>
+                                                </div>
+                                        </div>
+                                </div>
+                        </td>
                 </tr>
         </tbody>
-        <div class="pagination">
-                <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 1}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 2}" href="javascript:void(0)" (click)="loadPage(2)">2</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 3}" href="javascript:void(0)" (click)="loadPage(3)">3</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 4}" href="javascript:void(0)" (click)="loadPage(4)">4</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 5}" href="javascript:void(0)" (click)="loadPage(5)">5</a>
-                <a [ngClass]="{active : (listAttr.index/listAttr.size)+1 === 6}" href="javascript:void(0)" (click)="loadPage(6)">6</a>
-                <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
-        </div>
 </table>
+<div class="pagination" *ngIf="totalPageCount > 1">
+        <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
+        <span *ngIf="totalPageCount <= 5">
+                <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+                <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+        </span>
+        <span *ngIf="totalPageCount > 5">
+                <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+                <a *ngIf="curPage > 4" href="javascript:void(0)"> ... </a>
+                <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+                <a *ngIf="curPage < (totalPageCount - 3)" href="javascript:void(0)"> ... </a>
+                <a [ngClass]="{active : curPage === totalPageCount}" href="javascript:void(0)" (click)="loadPage(totalPageCount)">{{totalPageCount}}</a>
+        </span>
+        <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
+</div>

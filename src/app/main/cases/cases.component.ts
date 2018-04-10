@@ -10,13 +10,13 @@ import { CommonService } from '../../shared/services/index';
  * This class represents the lazy loaded HomeComponent.
  */
 @Component({
-    selector: 'app-account-list',
-    templateUrl: 'accounts.template.html',
-    styleUrls: ['./accounts.style.css', '../main.style.css'],
+    selector: 'app-case-list',
+    templateUrl: 'cases.template.html',
+    styleUrls: ['./cases.style.css', '../main.style.css'],
 })
 
-export class AccountListComponent implements OnInit {
-    private accountList: any = [];
+export class CaseListComponent implements OnInit {
+    private caseList: any = [];
 
     private listAttr: any;
     private totalCount: number;
@@ -29,20 +29,12 @@ export class AccountListComponent implements OnInit {
             index: 0,
             size: 8,
             isDesc: false,
-            sortingColumn: 'Name.keyword',
-            table: 'accounts'
+            sortingColumn: 'CaseNumber.keyword',
+            table: 'cases'
         };
         this.totalCount = 0;
         this.totalPageCount = 0;
         this.curPage = 0;
-    }
-
-    actionHover(account) {
-        account.actionView = true;
-    }
-
-    actionLeave(account) {
-        account.actionView = false;
     }
 
     sort(event, property) {
@@ -72,7 +64,7 @@ export class AccountListComponent implements OnInit {
         }
         component._mainService.getAllDashContent(component.listAttr).subscribe(
             response => {
-                component.accountList = response.hits;
+                component.caseList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 component.curPage = (component.listAttr.index / component.listAttr.size) + 1;
@@ -97,7 +89,7 @@ export class AccountListComponent implements OnInit {
         component._mainService.getAllDashContent(component.listAttr).subscribe(
             response => {
                 let arraySize = 5;
-                component.accountList = response.hits;
+                component.caseList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 if (component.totalPageCount < arraySize) {

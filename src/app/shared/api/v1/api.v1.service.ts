@@ -25,8 +25,24 @@ export class ApiV1Service extends ApiService {
 
     }
 
-    getAllAccounts(listAttr): Observable<any> {
-        return this.apiAccountService.getAllAccounts(listAttr);
+    getAllDashContent(listAttr): Observable<any> {
+        return this.apiAccountService.getAllDashContent(listAttr);
+    }
+
+    getAccountData(accountId): Observable<any> {
+        return this.apiAccountService.getAccountData(accountId);
+    }
+
+    getAccountAssets(accountId, listAttr): Observable<any> {
+        return this.apiAccountService.getAccountAssets(accountId, listAttr);
+    }
+
+    getAccountCases(accountId, listAttr): Observable<any> {
+        return this.apiAccountService.getAccountCases(accountId, listAttr);
+    }
+
+    getAccountContacts(accountId, listAttr): Observable<any> {
+        return this.apiAccountService.getAccountContacts(accountId, listAttr);
     }
 
 }

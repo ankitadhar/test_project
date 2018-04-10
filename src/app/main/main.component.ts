@@ -1,14 +1,15 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MAIN_CONST } from './main.constants';
-declare var $:any;
+import { CommonService } from '../shared/services/index';
+declare var $: any;
 
 
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  templateUrl: './main.template.html',
+  styleUrls: ['./main.style.css']
 })
 export class MainComponent {
   private tab: any;
@@ -17,14 +18,17 @@ export class MainComponent {
   private resetTimeDropDown: boolean;
   private timestamp: any = [];
   private duration: string;
-  myInnerHeight = window.innerHeight - 135;
+  private windowInnerHeight: number;
 
-  constructor() {
+  constructor(private _commonService: CommonService) {
     const curr_time = new Date().getTime();
     const stringifiedConst = JSON.stringify(MAIN_CONST);
     this.tab = {
       'overview': true,
-      'accounts': false
+      'accounts': false,
+      'assets': false,
+      'cases': false,
+      'contacts': false
     };
     this.rangeInput = {
       'gte': curr_time - (30 * 24 * 60 * 60000),
@@ -36,6 +40,12 @@ export class MainComponent {
     this.timestamp = JSON.parse(stringifiedConst)['DURATIONS'];
     this.timelineShown = false;
     this.resetTimeDropDown = false;
+    this.windowInnerHeight = window.innerHeight - 75;
+  }
+
+  onResize(event) {
+    const component = this;
+    component.windowInnerHeight = window.innerHeight - 75;
   }
 
   timeLineToggle() {
@@ -47,7 +57,10 @@ export class MainComponent {
     const component = this;
     component.tab = {
       'overview': false,
-      'accounts': false
+      'accounts': false,
+      'assets': false,
+      'cases': false,
+      'contacts': false
     };
 
     component.tab[curTab] = true;
@@ -78,5 +91,6 @@ export class MainComponent {
   }
 
   ngOnInit() {
+
   }
 }

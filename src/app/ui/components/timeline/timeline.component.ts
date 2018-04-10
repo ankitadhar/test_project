@@ -12,7 +12,7 @@ declare var $: any;
 })
 export class TimeLineComponent implements OnInit {
 
-
+  static chosenInitialized = false;
   private d1: string;
   private d2: string;
   private endDate;
@@ -21,8 +21,7 @@ export class TimeLineComponent implements OnInit {
   private startTime;
   private endTime;
   private rangeValues: number[] = [];
-  private resetRangeBar: boolean = true;
-  static chosenInitialized: boolean = false;
+  private resetRangeBar: boolean;
 
   private plotArea;
 
@@ -35,51 +34,28 @@ export class TimeLineComponent implements OnInit {
   @Output() timeRange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(public el: ElementRef, private zone: NgZone) {
-
-
+    this.resetRangeBar = true;
   }
 
   ngOnInit() {
   }
 
-  onClick(event, str, i) {
-    // this.selectedDropDownIndex = i
-    /* let curr_time = new Date().getTime();
-    var newRange = {
-      "gte": curr_time - Math.floor(str) * 1000,
-      "lte": curr_time,
-      "resetMarker": true,
-      "refreshTime": true
-    }
-    this.rangeValues = [newRange.gte, newRange.lte];
-    this.resetSlider(newRange.gte, newRange.lte);
-    if ($(this.el.nativeElement).find('.slider').slider("instance")) {
-      $(this.el.nativeElement).find('.slider').slider("pips", "destroy");
-      $(this.el.nativeElement).find('.slider').slider("destroy");
-    }
-
-    this.drawSlider();
-    this.resetRangeBar = true;
-    this.notify.emit(newRange); */
-  }
-
-
   ngOnChanges(changes: { [propName: string]: SimpleChange }) {
     if ((changes['range']) && (changes['range'].currentValue)) {
 
-      var gt = changes['range'].currentValue['gte'];
+      let gt = changes['range'].currentValue['gte'];
       this.d1 = this.getFormattedDate(new Date(gt));
 
-      var lt = changes['range'].currentValue['lte'];
+      let lt = changes['range'].currentValue['lte'];
       this.d2 = this.getFormattedDate(new Date(lt));
       this.rangeValues = [gt, lt];
-      if (changes['range'].currentValue['resetMarker'] == true) {
+      if (changes['range'].currentValue['resetMarker'] === true) {
         this.resetSlider(gt, lt);
       }
 
-      if ($(this.el.nativeElement).find('.slider').slider("instance")) {
-        $(this.el.nativeElement).find('.slider').slider("pips", "destroy");
-        $(this.el.nativeElement).find('.slider').slider("destroy");
+      if ($(this.el.nativeElement).find('.slider').slider('instance')) {
+        $(this.el.nativeElement).find('.slider').slider('pips', 'destroy');
+        $(this.el.nativeElement).find('.slider').slider('destroy');
       }
 
       this.drawSlider();
@@ -88,14 +64,14 @@ export class TimeLineComponent implements OnInit {
   }
 
   resetSlider(gt, lt) {
-    var self = this;
+    const self = this;
     this.min = gt;
     this.max = lt;
     this.rangeValues = [gt, lt];
   }
 
   drawSlider() {
-    var self = this;
+    const self = this;
     $(this.el.nativeElement).find('.slider').slider({
       range: true,
       min: this.min,
@@ -105,25 +81,27 @@ export class TimeLineComponent implements OnInit {
         self.onSlideEnd(ui.values[0], ui.values[1]);
       },
       slide: function (e, ui) {
-        let diff = self.rangeValues[1] - self.rangeValues[0]
-        if (diff == 30 * 24 * 60 * 60 * 1000) {
-          var val1 = '<div id="slider_tooltip">' + self.getDay($(this).slider("values", 0)) + " " + self.formatTime($(this).slider("values", 0)) + '</div>';
-          var val2 = '<div id="slider_tooltip">' + self.getDay($(this).slider("values", 1)) + " " + self.formatTime($(this).slider("values", 1)) + '</div>';
-        } else {
-          var val1 = '<div id="slider_tooltip">' + self.formatTime($(this).slider("values", 0)) + '</div>';
-          var val2 = '<div id="slider_tooltip">' + self.formatTime($(this).slider("values", 1)) + '</div>';
+        const diff = self.rangeValues[1] - self.rangeValues[0];
+        let val1 = '<div id="slider_tooltip">' + self.formatTime($(this).slider('values', 0)) + '</div>';
+        let val2 = '<div id="slider_tooltip">' + self.formatTime($(this).slider('values', 1)) + '</div>';
+        if (diff === 30 * 24 * 60 * 60 * 1000) {
+          val1 = '<div id="slider_tooltip">' + self.getDay($(this).slider('values', 0)) + ' ' +
+            self.formatTime($(this).slider('values', 0)) + '</div>';
+          val2 = '<div id="slider_tooltip">' + self.getDay($(this).slider('values', 1)) + ' ' +
+            self.formatTime($(this).slider('values', 1)) + '</div>';
         }
         $(this).children('.ui-slider-handle').first().html(val1);
         $(this).children('.ui-slider-handle').last().html(val2);
       },
       create: function (e, ui) {
-        let diff = self.rangeValues[1] - self.rangeValues[0]
-        if (diff == 30 * 24 * 60 * 60 * 1000) {
-          var val1 = '<div id="slider_tooltip">' + self.getDay($(this).slider("values", 0)) + " " + self.formatTime($(this).slider("values", 0)) + '</div>';
-          var val2 = '<div id="slider_tooltip">' + self.getDay($(this).slider("values", 1)) + " " + self.formatTime($(this).slider("values", 1)) + '</div>';
-        } else {
-          var val1 = '<div id="slider_tooltip">' + self.formatTime($(this).slider("values", 0)) + '</div>';
-          var val2 = '<div id="slider_tooltip">' + self.formatTime($(this).slider("values", 1)) + '</div>';
+        const diff = self.rangeValues[1] - self.rangeValues[0];
+        let val1 = '<div id="slider_tooltip">' + self.formatTime($(this).slider('values', 0)) + '</div>';
+        let val2 = '<div id="slider_tooltip">' + self.formatTime($(this).slider('values', 1)) + '</div>';
+        if (diff === 30 * 24 * 60 * 60 * 1000) {
+          val1 = '<div id="slider_tooltip">' + self.getDay($(this).slider('values', 0)) + ' ' +
+            self.formatTime($(this).slider('values', 0)) + '</div>';
+          val2 = '<div id="slider_tooltip">' + self.getDay($(this).slider('values', 1)) + ' ' +
+            self.formatTime($(this).slider('values', 1)) + '</div>';
         }
         $(this).children('.ui-slider-handle').first().html(val1);
         $(this).children('.ui-slider-handle').last().html(val2);
@@ -134,12 +112,12 @@ export class TimeLineComponent implements OnInit {
   }
 
   addSliderPips() {
-
-    var self = this;
+    const self = this;
     // 1 week
-    var weekNo = -1;
-    let viewDiff = this.rangeValues[1] - this.rangeValues[0];
-    let actualDiff = this.max - this.min;
+    let weekNo = -1;
+    let monthNo = -1;
+    const viewDiff = this.rangeValues[1] - this.rangeValues[0];
+    const actualDiff = this.max - this.min;
     // 30 mins
     if (viewDiff <= 30 * 60 * 1000) {
       if (actualDiff <= 90 * 60 * 1000) {
@@ -161,7 +139,7 @@ export class TimeLineComponent implements OnInit {
         }
       });
       // 1 day
-    } else if (viewDiff <= 24 * 60 * 60 * 1000 && actualDiff <= 24 * 60 *60 * 1000) {
+    } else if (viewDiff <= 24 * 60 * 60 * 1000 && actualDiff <= 24 * 60 * 60 * 1000) {
       $(this.el.nativeElement).find('.slider').slider('pips', {
         rest: 'label',
         step: 60 * 60 * 1000,
@@ -170,35 +148,51 @@ export class TimeLineComponent implements OnInit {
         }
       });
 
-    } else if (viewDiff <= 7 * 24 * 60 * 60 * 1000 && actualDiff <= 7 * 24 * 60 *60 * 1000) {
+    } else if (viewDiff <= 7 * 24 * 60 * 60 * 1000 && actualDiff <= 7 * 24 * 60 * 60 * 1000) {
       $(this.el.nativeElement).find('.slider').slider('pips', {
         rest: 'label',
         step: 24 * 60 * 60 * 1000,
         formatLabel: function (val) {
-          return self.getDay(val) + " " + self.formatTime(val);
+          return self.getDay(val) + ' ' + self.formatTime(val);
         }
       });
-    }
-    else if (viewDiff <= 30 * 24 * 60 * 60 * 1000 && actualDiff <= 30 * 24 * 60 *60 * 1000) {
-
+    } else if (viewDiff <= 30 * 24 * 60 * 60 * 1000 && actualDiff <= 30 * 24 * 60 * 60 * 1000) {
       $(this.el.nativeElement).find('.slider').slider('pips', {
-
         rest: 'label',
         step: 7 * 24 * 60 * 60 * 1000,
         formatLabel: function (val) {
           weekNo = weekNo + 1;
-          return "Week " + weekNo;
+          return 'Week ' + weekNo;
 
         }
       });
-    }
-    else {
+    } else if (viewDiff <= 6 * 30 * 24 * 60 * 60 * 1000 && actualDiff <= 6 * 30 * 24 * 60 * 60 * 1000) {
+      $(this.el.nativeElement).find('.slider').slider('pips', {
+        rest: 'label',
+        step: 30 * 24 * 60 * 60 * 1000,
+        formatLabel: function (val) {
+          monthNo = monthNo + 1;
+          return 'Month ' + monthNo;
+
+        }
+      });
+    } else if (viewDiff <= 12 * 30 * 24 * 60 * 60 * 1000 && actualDiff <= 12 * 30 * 24 * 60 * 60 * 1000) {
+      $(this.el.nativeElement).find('.slider').slider('pips', {
+        rest: 'label',
+        step: 30 * 24 * 60 * 60 * 1000,
+        formatLabel: function (val) {
+          monthNo = monthNo + 1;
+          return 'Month ' + monthNo;
+
+        }
+      });
+    } else {
       $(this.el.nativeElement).find('.slider').slider('pips', {
         rest: 'label',
         formatLabel: function (val) {
           return self.formatTime(val);
-        }//,
-        //  labels:["Day 0","Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"]
+        }
+        //  labels:['Day 0','Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7']
 
 
       });
@@ -208,29 +202,29 @@ export class TimeLineComponent implements OnInit {
 
   getDay(val) {
     val = new Date(val);
-    var day = val.getUTCDay();
-    var str = "";
+    const day = val.getUTCDay();
+    let str = '';
     switch (day) {
       case 0:
-        str = "Sun";
+        str = 'Sun';
         break;
       case 1:
-        str = "Mon";
+        str = 'Mon';
         break;
       case 2:
-        str = "Tue";
+        str = 'Tue';
         break;
       case 3:
-        str = "Wed";
+        str = 'Wed';
         break;
       case 4:
-        str = "Thu";
+        str = 'Thu';
         break;
       case 5:
-        str = "Fri";
+        str = 'Fri';
         break;
       case 6:
-        str = "Sat";
+        str = 'Sat';
         break;
     }
     return str;
@@ -240,20 +234,20 @@ export class TimeLineComponent implements OnInit {
     val = new Date(val);
     let hrs = val.getHours();
     if (hrs < 10) {
-      hrs = "0" + hrs;
+      hrs = '0' + hrs;
     }
     let min = val.getMinutes();
     if (min < 10) {
-      min = "0" + min;
+      min = '0' + min;
     }
-    return hrs + ":" + min;
+    return hrs + ':' + min;
   }
 
   getFormattedDate(date) {
-    return (date.getUTCMonth() + 1) + "/" +
-      date.getUTCDate() + "/" +
-      date.getUTCFullYear() + " " +
-      date.getUTCHours() + ":" +
+    return (date.getUTCMonth() + 1) + '/' +
+      date.getUTCDate() + '/' +
+      date.getUTCFullYear() + ' ' +
+      date.getUTCHours() + ':' +
       date.getUTCMinutes();
   }
 
@@ -263,12 +257,12 @@ export class TimeLineComponent implements OnInit {
   }
 
   onSlideEnd(gt, lt) {
-    var newRange = {
-      "gte": 0,
-      "lte": lt,
-      "resetMarker": false,
-      "refreshTime": false
-    }
+    const newRange = {
+      'gte': 0,
+      'lte': lt,
+      'resetMarker': false,
+      'refreshTime': false
+    };
     newRange.gte = gt;
     this.zone.run(() => {
       this.notify.emit(newRange);

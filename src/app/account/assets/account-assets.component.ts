@@ -1,68 +1,59 @@
 /*
  * Copyright (c) 2016-17 MapleLabs Inc
  */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { MainService } from '../main.service';
-import { CommonService } from '../../shared/services/index';
+import { AccountService } from '../account.service';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
 @Component({
-    selector: 'app-account-list',
-    templateUrl: 'accounts.template.html',
-    styleUrls: ['./accounts.style.css', '../main.style.css'],
+    selector: 'app-account-assets',
+    templateUrl: 'account-assets.template.html',
+    styleUrls: ['./account-assets.style.css'],
 })
 
-export class AccountListComponent implements OnInit {
-    private accountList: any = [];
-
-    private listAttr: any;
+export class AccountAssetComponent implements OnInit {
+    @Input() accountId: string;
+    private assetList: any = [];
     private totalCount: number;
     private pagesShown: any = [];
     private totalPageCount: number;
     private curPage: number;
+    private listAttr: any;
 
-    constructor(private router: Router, private _mainService: MainService, private _commonService: CommonService) {
+    constructor(private _accountService: AccountService) {
         this.listAttr = {
             index: 0,
             size: 8,
             isDesc: false,
-            sortingColumn: 'Name.keyword',
-            table: 'accounts'
+            sortingColumn: 'SerialNumber.keyword'
         };
         this.totalCount = 0;
-        this.totalPageCount = 0;
-        this.curPage = 0;
     }
 
-    actionHover(account) {
-        account.actionView = true;
+    actionHover(asset) {
+        asset.actionView = true;
     }
 
-    actionLeave(account) {
-        account.actionView = false;
+    actionLeave(asset) {
+        asset.actionView = false;
     }
 
     sort(event, property) {
         const component = this;
         const classes = event.target.className;
         if (classes.indexOf('fa-filter') < 0) {
-            component.listAttr.isDesc = !component.listAttr.isDesc;
+            component.listAttr.isDesc = !component.listAttr.isDesc; // change the direction
             component.listAttr.sortingColumn = property;
         }
         this.loadPage(1);
     }
 
-    viewAccount(account) {
-        const component = this;
-        component._commonService.setAccountName(account._source.Name);
-        component.router.navigateByUrl('account/' + account._source.Id);
-    }
-
     loadPage(page) {
         const component = this;
+
         if (typeof page === 'number') {
             component.listAttr.index = component.listAttr.size * (page - 1);
         } else if (typeof page === 'string' && 'prev' === page && component.curPage > 1) {
@@ -70,9 +61,9 @@ export class AccountListComponent implements OnInit {
         } else if (typeof page === 'string' && 'next' === page && component.curPage < component.totalPageCount) {
             component.listAttr.index = component.listAttr.index + component.listAttr.size;
         }
-        component._mainService.getAllDashContent(component.listAttr).subscribe(
+        component._accountService.getAccountAssets(component.accountId, component.listAttr).subscribe(
             response => {
-                component.accountList = response.hits;
+                component.assetList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 component.curPage = (component.listAttr.index / component.listAttr.size) + 1;
@@ -94,14 +85,14 @@ export class AccountListComponent implements OnInit {
     ngOnInit() {
         const component = this;
 
-        component._mainService.getAllDashContent(component.listAttr).subscribe(
+        component._accountService.getAccountAssets(component.accountId, component.listAttr).subscribe(
             response => {
                 let arraySize = 5;
-                component.accountList = response.hits;
+                component.assetList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 if (component.totalPageCount < arraySize) {
-                    arraySize = component.totalPageCount;
+                    arraySize = component.totalPageCount - 1;
                 }
                 component.pagesShown = Array(arraySize).fill(0).map((x, i) => i + 2);
                 component.curPage = 1;

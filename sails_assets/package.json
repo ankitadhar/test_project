@@ -1,8 +1,8 @@
 {
-  "name": "sails-angular2",
+  "name": "support",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "1.0.0",
+  "description": "Dockerized service for Support CRM operations",
   "keywords": [],
   "dependencies": {
     "@angular/animations": "^5.0.0",
@@ -17,7 +17,7 @@
     "@angular/upgrade": "4.2.2",
     "angular-in-memory-web-api": "~0.3.0",
     "core-js": "^2.4.1",
-	  "bootstrap": "^3.3.7",
+    "bootstrap": "^3.3.7",
     "ng2-bootstrap": "^1.6.1",
     "jquery": "^3.3.1",
     "jquery-ui": "github:jquery/jquery-ui",
@@ -46,19 +46,31 @@
     "sails": "~0.12.14",
     "sails-disk": "~0.10.9",
     "systemjs": "0.19.40",
-	  "ts-helpers": "^1.1.1"
+    "ts-helpers": "^1.1.1",
+    "skipper-s3": "0.5.4",
+    "tar-fs": "1.15.0",
+    "chmodr": "1.0.2",
+    "forever-agent": "~0.5.0",
+    "elasticsearch": "14.2.1",
+    "elasticdump": "3.1.0",
+    "avsc": "5.0.6",
+    "sails-mongo": "0.12.2",
+    "jsforce": "1.8.0",
+    "sails-hook-update-or-create": "0.1.4",
+    "sails-hook-jobs": "0.1.6",
+    "synchronize": "2.0.0",
+    "sails-swagger": "0.5.1",
+    "node-rest-client": "3.1.0",
+    "kafka-node": "2.4.1"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node --max-old-space-size=4096 app.js"
   },
   "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/xmaestro/sails-angular2.git"
-  },
+  
   "devDependencies": {
-      "@angular/cli": "1.5.0",
+    "@angular/cli": "1.5.0",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
     "npm-run-all": "^4.1.1",
@@ -82,9 +94,7 @@
     "sails-hook-autoreload": "^0.14.3",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
-
-  },
-  "author": "xmaestro",
-  "license": ""
+    "typescript": "~2.4.2",
+    "swagger-ui": "^2.2.10"
+  }
 }

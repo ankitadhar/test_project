@@ -10,13 +10,13 @@ import { CommonService } from '../../shared/services/index';
  * This class represents the lazy loaded HomeComponent.
  */
 @Component({
-    selector: 'app-account-list',
-    templateUrl: 'accounts.template.html',
-    styleUrls: ['./accounts.style.css', '../main.style.css'],
+    selector: 'app-asset-list',
+    templateUrl: 'assets.template.html',
+    styleUrls: ['./assets.style.css', '../main.style.css'],
 })
 
-export class AccountListComponent implements OnInit {
-    private accountList: any = [];
+export class AssetListComponent implements OnInit {
+    private assetList: any = [];
 
     private listAttr: any;
     private totalCount: number;
@@ -30,19 +30,19 @@ export class AccountListComponent implements OnInit {
             size: 8,
             isDesc: false,
             sortingColumn: 'Name.keyword',
-            table: 'accounts'
+            table: 'assets'
         };
         this.totalCount = 0;
         this.totalPageCount = 0;
         this.curPage = 0;
     }
 
-    actionHover(account) {
-        account.actionView = true;
+    actionHover(asset) {
+        asset.actionView = true;
     }
 
-    actionLeave(account) {
-        account.actionView = false;
+    actionLeave(asset) {
+        asset.actionView = false;
     }
 
     sort(event, property) {
@@ -72,7 +72,7 @@ export class AccountListComponent implements OnInit {
         }
         component._mainService.getAllDashContent(component.listAttr).subscribe(
             response => {
-                component.accountList = response.hits;
+                component.assetList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 component.curPage = (component.listAttr.index / component.listAttr.size) + 1;
@@ -97,7 +97,7 @@ export class AccountListComponent implements OnInit {
         component._mainService.getAllDashContent(component.listAttr).subscribe(
             response => {
                 let arraySize = 5;
-                component.accountList = response.hits;
+                component.assetList = response.hits;
                 component.totalCount = response.total;
                 component.totalPageCount = Math.ceil(component.totalCount / component.listAttr.size);
                 if (component.totalPageCount < arraySize) {

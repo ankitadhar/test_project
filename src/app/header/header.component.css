@@ -72,7 +72,7 @@
   padding-left: 15px;
 }
 .log-icon {
-    background: url(assets/images/icon-log.png) center 20px no-repeat; 
+    /* background: url('../../assets/images/icon-log.png') center 20px no-repeat;  */
     float: left;
     cursor: pointer;
     padding: 15px 2px; 

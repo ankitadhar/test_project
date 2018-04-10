@@ -1,104 +1,43 @@
-
-<div class="" style="position:relative;">
-   <div class="home_icon_cont">
-    <i class="fa fa-home home-icon"></i>
-    <i class="" style="font-size: 22px;">/</i>
-    <span>Account Details</span>
-   </div>
-    <div>
-        <ul class="nav nav-tabs navigation">
-            <li class="active"><a data-toggle="tab" href="#sectionA">Account Details</a></li>
-            <li><a data-toggle="tab" href="#sectionB">Assets</a></li>
-            <li><a data-toggle="tab" href="#sectionC">Cases</a></li>
-            <li><a data-toggle="tab" href="#sectionD">Contacts</a></li>
-            <li><a data-toggle="tab" href="#sectionE">Field Issues</a></li>
-        </ul>
+<div class="" style="position:relative;" *ngIf="accountId != ''">
+    <div class="home_icon_cont">
+        <a href="#/dashboard"><i class="fa fa-home home-icon" ></i></a>
+        <i class="" style="font-size: 22px;">/</i>
+        <span *ngIf="!(null === accountData.Name || 'undefined' === accountData.Name)">{{accountData.Name}}</span>
     </div>
-        <div class="tab-content">
-            <div id="sectionA" class="tab-pane fade in active">
-                <button class="button pull-right">Upload Bundle</button>
+    <ul class="nav nav-tabs navigation">
+        <li class="active"><a data-toggle="tab" href="#overview">Account Details</a></li>
+        <li><a data-toggle="tab" href="#assets">Assets</a></li>
+        <li><a data-toggle="tab" href="#cases">Cases</a></li>
+        <li><a data-toggle="tab" href="#contacts">Contacts</a></li>
+        <!-- <li><a data-toggle="tab" href="#fi">Field Issues</a></li> -->
+    </ul>
+    <div class="tab-content overflow" [ngStyle]="{'max-height':windowInnerHeight+'px'}" (window:resize)="onResize($event)">
+        <div id="overview" class="tab-pane fade in active">
+            <button class="button pull-right">Upload Bundle</button>
+            <div class="col-sm-12 col-md-5 accountData">
+                <label>ID: {{accountData.Id}}</label>
+                <label>Name: {{accountData.Name}}</label>
+                <label>Type: {{accountData.Type}}</label>
+                <label>Status: {{accountData.Status__c}}</label>
+                <label>Customer Sentiment: {{accountData.Customer_Sentiment__c}}</label>
+                <label>Support Level: {{accountData.Support_Level__c}}</label>
+                <label>Created Date: {{accountData.CreatedDate | date:'dd/MM/yyyy'}}</label>
+                <label>Last Activity Date: {{accountData.LastActivityDate | date:'dd/MM/yyyy'}}</label>
+                <label>Last Modified Date: {{accountData.LastModifiedDate | date:'dd/MM/yyyy'}}</label>
             </div>
-            <div id="sectionB" class="tab-pane fade">
-                    <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Asset1</th>
-                                    <th>Asset2</th>
-                                    <th>Asset3</th>
-                                    <th>Asset4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                </tr>
-                                <tr>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-            </div>
-            <div id="sectionC" class="tab-pane fade">
-                    <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>case1</th>
-                                    <th>case2</th>
-                                    <th>case3</th>
-                                    <th>case4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                </tr>
-                                <tr>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-            </div>
-            <div id="sectionD" class="tab-pane fade">
-                    <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Contact1</th>
-                                    <th>Contact2</th>
-                                    <th>Contact3</th>
-                                    <th>Contact4</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                    <td>asdalskd</td>
-                                </tr>
-                                <tr>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                        <td>asdalskd</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-            </div>
-            <div id="sectionE" class="tab-pane fade">
-                    <h3>Coming Soon</h3>
-                </div>
-          
         </div>
+        <div id="assets" class="tab-pane fade">
+            <app-account-assets [accountId]="accountId"></app-account-assets>
+        </div>
+        <div id="cases" class="tab-pane fade">
+            <app-account-cases [accountId]="accountId"></app-account-cases>
+        </div>
+        <div id="contacts" class="tab-pane fade">
+            <app-account-contacts [accountId]="accountId"></app-account-contacts>
+        </div>
+        <!-- <div id="fi" class="tab-pane fade">
+            <h3>Coming Soon</h3>
+        </div> -->
+
     </div>
+</div>

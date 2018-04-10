@@ -1,0 +1,67 @@
+<table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+    <thead>
+        <tr>
+            <th (click)="sort($event,'Id.keyword')">
+                Id
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Id.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Id.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Id.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Name.keyword')">
+                Name
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Name.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Name.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Name.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Title.keyword')">
+                Title
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Title.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Title.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Title.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Email.keyword')">
+                Email
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Email.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Email.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Email.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th>
+                Mailing Address
+            </th>
+        </tr>
+        <tr>
+            <th colspan="5" *ngIf="contactList.length < 1" class="italic-font">
+                No Data Found
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let contact of contactList">
+        <tr>
+            <td>{{contact._source.Id}}</td>
+            <td>{{contact._source.Name}}</td>
+            <td class="ellipsis" [title]="contact._source.Title">{{contact._source.Title}}</td>
+            <td>{{contact._source.Email}}</td>
+            <td>
+                <pre *ngIf="!(contact._source.MailingAddress === null || contact._source.MailingAddress === undefined)">
+{{contact._source.MailingAddress.street}},
+{{contact._source.MailingAddress.city}}, {{contact._source.MailingAddress.state}},
+{{contact._source.MailingAddress.country}}, {{contact._source.MailingAddress.postalCode}}
+                </pre>
+                <pre *ngIf="(contact._source.MailingAddress === null || contact._source.MailingAddress === undefined)">
+                </pre>                    
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="pagination" *ngIf="totalPageCount > 1">
+    <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
+    <span *ngIf="totalPageCount <= 5">
+            <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+            <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+    </span>
+    <span *ngIf="totalPageCount > 5">
+            <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+            <a *ngIf="curPage > 4" href="javascript:void(0)"> ... </a>
+            <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+            <a *ngIf="curPage < (totalPageCount - 3)" href="javascript:void(0)"> ... </a>
+            <a [ngClass]="{active : curPage === totalPageCount}" href="javascript:void(0)" (click)="loadPage(totalPageCount)">{{totalPageCount}}</a>
+    </span>
+    <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
+</div>

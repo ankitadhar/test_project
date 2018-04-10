@@ -1,0 +1,95 @@
+<h1 class="page_title">Assets</h1>
+
+<div>
+        <span class="pull-right search">
+                <input type="text" placeholder="Search" name="" class="searchBox" [(ngModel)]="filterHOST" />
+                <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
+</div>
+
+<table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+        <thead>
+                <tr>
+                        <th (click)="sort($event,'SerialNumber.keyword')">
+                                Serial Number
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'SerialNumber.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'SerialNumber.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'SerialNumber.keyword' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'Name.keyword')" style="width: 23%;">
+                                Asset Name
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Name.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Name.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Name.keyword' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'Quantity')" style="width: 8%;">
+                                Quantity
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Quantity', 'fa-sort-asc': (listAttr.sortingColumn == 'Quantity' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Quantity' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'Product_Code__c.keyword')" style="width: 15%;">
+                                Product code
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Product_Code__c.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Product_Code__c.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Product_Code__c.keyword' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'Status.keyword')" style="width: 8%;">
+                                Status
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Status.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Status.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Status.keyword' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'CreatedDate')">
+                                Created Date
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'CreatedDate', 'fa-sort-asc': (listAttr.sortingColumn == 'CreatedDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'CreatedDate' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th (click)="sort($event,'PurchaseDate')">
+                                Purchase Date
+                                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'PurchaseDate', 'fa-sort-asc': (listAttr.sortingColumn == 'PurchaseDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'PurchaseDate' && listAttr.isDesc) }"
+                                        aria-hidden="true"> </i>
+                        </th>
+                        <th style="width: 8%">Action(s)</th>
+                </tr>
+                <tr>
+                        <th colspan="8" *ngIf="assetList.length < 1" class="italic-font">
+                                No Data Found
+                        </th>
+                </tr>
+        </thead>
+        <tbody *ngFor="let asset of assetList">
+                <tr>
+                        <td>{{asset._source.SerialNumber}}</td>
+                        <td class="ellipsis" [title]="asset._source.Name">{{asset._source.Name}}</td>
+                        <td>{{asset._source.Quantity}}</td>
+                        <td>{{asset._source.Product_Code__c}}</td>
+                        <td>{{asset._source.Status}}</td>
+                        <td>{{asset._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{asset._source.PurchaseDate === null || asset._source.PurchaseDate === undefined? '--' : asset._source.PurchaseDate
+                                | date: 'dd/MM/yyyy'}}</td>
+                        <td (mouseenter)="actionHover(asset)" (mouseleave)="actionLeave(asset)" class="actionTD"><span class="cursor"> ... </span>
+                                <div [hidden]="!asset.actionView" class="actionTooltip">
+                                        <div class="actionContainer">
+                                                <h3>
+                                                        <u>Actions:</u>
+                                                </h3>
+                                                <div class="actionItem"><i class="fa fa-caret-right arrow_right"></i><a href="https://login.salesforce.com/{{asset._source.Id}}" target="_blank">Launch Salesforce for {{asset._source.Name}}</a></div>
+                                                <div class="actionItem"><i class="fa fa-caret-right arrow_right"></i><a [href]="asset._source.Tracking_URL__c" target="_blank">Launch Asset Tracker for {{asset._source.Name}}</a></div>
+                                        </div>
+                                </div>
+                        </td>
+                </tr>
+        </tbody>
+</table>
+
+<div class="pagination" *ngIf="totalPageCount > 1">
+        <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
+        <span *ngIf="totalPageCount <= 5">
+                <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+                <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+            </span>
+        <span *ngIf="totalPageCount > 5">
+                <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+                <a *ngIf="curPage > 4" href="javascript:void(0)"> ... </a>
+                <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+                <a *ngIf="curPage < (totalPageCount - 3)" href="javascript:void(0)"> ... </a>
+                <a [ngClass]="{active : curPage === totalPageCount}" href="javascript:void(0)" (click)="loadPage(totalPageCount)">{{totalPageCount}}</a>
+        </span>
+        <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
+</div>

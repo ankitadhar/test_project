@@ -6,7 +6,7 @@ export class KeysPipe implements PipeTransform {
         let keys = [];
         for (let key in value) {
             if (value.hasOwnProperty(key)) {
-                if(null !== value[key]) {
+                if (null !== value[key]) {
                     keys.push({ key: key, value: value[key] });
                 }
             }

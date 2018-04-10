@@ -9,7 +9,6 @@ import { TimeLineComponent } from './timeline/timeline.component';
 
 @NgModule({
 	imports: [CommonModule, FormsModule, RouterModule.forRoot(ROUTES, { useHash: true })],
-
 	declarations: [
 		TimeLineComponent,
 	],

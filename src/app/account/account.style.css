@@ -2,7 +2,7 @@
 	clear: both;
 	overflow:hidden;
     border-bottom: 1px solid #ddd;
-    margin-left: 181px;
+    margin-left: 280px;
 }
 .tab-content{
     padding: 0px 116px 0px 180px;
@@ -61,4 +61,10 @@
     position: absolute;
     top: 16px;
     left: 20px;
+}
+.accountData{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+label {
+    display: block;
 }

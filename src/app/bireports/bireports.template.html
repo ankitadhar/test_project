@@ -1,0 +1,23 @@
+<div class="bi_reports">
+  <div class="col-md-2 pad0">
+    <div class="nav_header">
+      <h4>Reports</h4>
+    </div>
+    <ul class="nav overflowscroll" [ngStyle]="{'height':leftPanel+'px'}">
+      <li class="list-item">
+        <a class="nav-link active" [ngClass]="{'active': (selectedIndex === 1)}" (click)="updateSrc(cases_url,1)">Cases </a>
+      </li>
+      <li class="list-item">
+        <a class="nav-link" [ngClass]="{'active': (selectedIndex === 2)}" (click)="updateSrc(support_url,2)"> Support SLA</a>
+      </li>
+      <li class="list-item">
+        <a class="nav-link" [ngClass]="{'active': (selectedIndex === 3)}" (click)="updateSrc(version_adoption,3)">Version Adoption</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-10" [ngStyle]="{'height':myInnerHeight+'px'}">
+    <iframe src="http://10.2.53.194:5601/app/kibana#/dashboard/AWKRlX8UbE8zvnqZG1Cg?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-30d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AWKNKXMK8ZbcdccI9Irt,panelIndex:1,row:1,size_x:3,size_y:3,type:visualization),(col:4,id:AWKNN0hx8ZbcdccI9JN6,panelIndex:2,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AWKNNbhE8ZbcdccI9JKJ,panelIndex:3,row:4,size_x:6,size_y:5,type:visualization),(col:7,id:AWKRkcoNbE8zvnqZG03k,panelIndex:4,row:1,size_x:6,size_y:3,type:visualization),(col:7,id:AWKRmqWzbE8zvnqZG1Q-,panelIndex:5,row:4,size_x:6,size_y:5,type:visualization)),query:(match_all:()),timeRestore:!t,title:'Case+Dashboard',uiState:(P-1:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-2:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-4:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-5:(vis:(params:(sort:(columnIndex:!n,direction:!n))))),viewMode:view)"
+      *ngIf="firstFrame"></iframe>
+    <iframe [src]="current_url" *ngIf="!firstFrame"></iframe>
+  </div>
+</div>

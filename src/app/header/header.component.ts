@@ -7,7 +7,7 @@ import { FusionDialog } from '../ui/components/dialog/fusion-dialog.component'; 
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
+  templateUrl: './header.template.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {

@@ -1,0 +1,91 @@
+<table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+    <thead>
+        <tr>
+            <th (click)="sort($event,'Id.keyword')">
+                Id
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Id.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Id.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Id.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'CaseNumber.keyword')">
+                Case Number
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'CaseNumber.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'CaseNumber.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'CaseNumber.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Owner.Id.keyword')">
+                Owner
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Owner.Id.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Owner.Id.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Owner.Id.keyword' && listAttr.isDesc) }"
+                aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Subject.keyword')">
+                Subject
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Subject.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Subject.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Subject.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Status.keyword')">
+                Status
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Status.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Status.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Status.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'Priority.keyword')">
+                Priority
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Priority.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Priority.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Priority.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'IsEscalated')">
+                Escalated
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'IsEscalated', 'fa-sort-asc': (listAttr.sortingColumn == 'IsEscalated' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'IsEscalated' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'CreatedDate')">
+                Created Date
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'CreatedDate', 'fa-sort-asc': (listAttr.sortingColumn == 'CreatedDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'CreatedDate' && listAttr.isDesc) }"
+                aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'ClosedDate')">
+                Closed Date
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'ClosedDate', 'fa-sort-asc': (listAttr.sortingColumn == 'ClosedDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'ClosedDate' && listAttr.isDesc) }"
+                aria-hidden="true"> </i>
+            </th>
+            <th (click)="sort($event,'ContactEmail.keyword')">
+                Contact Email
+                <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'ContactEmail.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'ContactEmail.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'ContactEmail.keyword' && listAttr.isDesc) }"
+                    aria-hidden="true"> </i>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="10" *ngIf="caseList.length < 1" class="italic-font">
+                No Data Found
+            </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let case of caseList">
+        <tr>
+            <td class="ellipsis" [title]="case._source.Id">{{case._source.Id}}</td>
+            <td>{{case._source.CaseNumber}}</td>
+            <td class="ellipsis" [title]="case._source.Owner.Id">{{case._source.Owner.Id}}</td>
+            <td class="ellipsis" [title]="case._source.Subject">{{case._source.Subject}}</td>
+            <td>{{case._source.Status}}</td>
+            <td>{{case._source.Priority}}</td>
+            <td>{{case._source.IsEscalated}}</td>
+            <td>{{case._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{case._source.ClosedDate | date: 'dd/MM/yyyy'}}</td>
+            <td class="ellipsis" [title]="case._source.ContactEmail">{{case._source.ContactEmail}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="pagination" *ngIf="totalPageCount > 1">
+    <a href="javascript:void(0)" (click)="loadPage('prev')">&laquo;</a>
+    <span *ngIf="totalPageCount <= 5">
+            <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+            <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+        </span>
+    <span *ngIf="totalPageCount > 5">
+            <a [ngClass]="{active : listAttr.index === 0}" href="javascript:void(0)" (click)="loadPage(1)">1</a>
+            <a *ngIf="curPage > 4" href="javascript:void(0)"> ... </a>
+            <a [ngClass]="{active : curPage === page}" href="javascript:void(0)" (click)="loadPage(page)" *ngFor="let page of pagesShown">{{page}}</a>
+            <a *ngIf="curPage < (totalPageCount - 3)" href="javascript:void(0)"> ... </a>
+            <a [ngClass]="{active : curPage === totalPageCount}" href="javascript:void(0)" (click)="loadPage(totalPageCount)">{{totalPageCount}}</a>
+    </span>
+    <a href="javascript:void(0)" (click)="loadPage('next')">&raquo;</a>
+</div>

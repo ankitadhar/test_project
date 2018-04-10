@@ -1,0 +1,86 @@
+<div class="" style="position:relative;">
+  <div class="home_icon_cont">
+    <h1 class="page_title">Dashboard</h1>
+    <ul class="nav nav-tabs navigation">
+      <li class="active"><a data-toggle="tab" href="#cases" (click)="updateSrc(cases_url)">Cases</a></li>
+      <li><a data-toggle="tab" href="#support_sla" (click)="updateSrc(support_url)">Support SLA</a></li>
+      <li><a data-toggle="tab" href="#version_adoption" (click)="updateSrc(version_adoption)">Version Adoption</a></li>
+    </ul>
+  </div>
+  <div style="top: 75px;position: absolute;">
+    <!-- <table class="table table-bordered clear fixedTable summaryDetails computeTable analyzeGrid">
+      <thead>
+        <tr>
+          <th (click)="sort($event,'SerialNumber.keyword')">
+            Serial Number
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'SerialNumber.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'SerialNumber.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'SerialNumber.keyword' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'Name.keyword')" style="width: 23%;">
+            Asset Name
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Name.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Name.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Name.keyword' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'Quantity')" style="width: 8%;">
+            Quantity
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Quantity', 'fa-sort-asc': (listAttr.sortingColumn == 'Quantity' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Quantity' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'Product_Code__c.keyword')" style="width: 15%;">
+            Product code
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Product_Code__c.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Product_Code__c.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Product_Code__c.keyword' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'Status.keyword')" style="width: 8%;">
+            Status
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'Status.keyword', 'fa-sort-asc': (listAttr.sortingColumn == 'Status.keyword' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'Status.keyword' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'CreatedDate')">
+            Created Date
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'CreatedDate', 'fa-sort-asc': (listAttr.sortingColumn == 'CreatedDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'CreatedDate' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th (click)="sort($event,'PurchaseDate')">
+            Purchase Date
+            <i class="fa" [ngClass]="{'fa-sort': listAttr.sortingColumn != 'PurchaseDate', 'fa-sort-asc': (listAttr.sortingColumn == 'PurchaseDate' && !listAttr.isDesc), 'fa-sort-desc': (listAttr.sortingColumn == 'PurchaseDate' && listAttr.isDesc) }"
+              aria-hidden="true"> </i>
+          </th>
+          <th style="width: 8%">Action(s)</th>
+        </tr>
+        <tr>
+          <th colspan="8" *ngIf="assetList.length < 1" class="italic-font">
+            No Data Found
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+      </tbody>
+    </table> -->
+      <iframe (window:resize)="onResize($event)" [width]="width" [height]="height" src="http://10.2.53.194:5601/app/kibana#/dashboard/AWKRlX8UbE8zvnqZG1Cg?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-30d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AWKNKXMK8ZbcdccI9Irt,panelIndex:1,row:1,size_x:3,size_y:3,type:visualization),(col:4,id:AWKNN0hx8ZbcdccI9JN6,panelIndex:2,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AWKNNbhE8ZbcdccI9JKJ,panelIndex:3,row:4,size_x:6,size_y:5,type:visualization),(col:7,id:AWKRkcoNbE8zvnqZG03k,panelIndex:4,row:1,size_x:6,size_y:3,type:visualization),(col:7,id:AWKRmqWzbE8zvnqZG1Q-,panelIndex:5,row:4,size_x:6,size_y:5,type:visualization)),query:(match_all:()),timeRestore:!t,title:'Case+Dashboard',uiState:(P-1:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-2:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-4:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-5:(vis:(params:(sort:(columnIndex:!n,direction:!n))))),viewMode:view)"
+        *ngIf="firstFrame"></iframe>
+      <iframe (window:resize)="onResize($event)" [width]="width" [height]="height" [src]="current_url" *ngIf="!firstFrame"></iframe>
+  </div>
+  <!-- <div class="tab-content overflow">
+    <div id="cases" class="tab-pane fade in active">
+      <iframe src="http://10.2.53.194:5601/app/kibana#/dashboard/AWKRlX8UbE8zvnqZG1Cg?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-30d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:1,id:AWKNKXMK8ZbcdccI9Irt,panelIndex:1,row:1,size_x:3,size_y:3,type:visualization),(col:4,id:AWKNN0hx8ZbcdccI9JN6,panelIndex:2,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AWKNNbhE8ZbcdccI9JKJ,panelIndex:3,row:4,size_x:6,size_y:5,type:visualization),(col:7,id:AWKRkcoNbE8zvnqZG03k,panelIndex:4,row:1,size_x:6,size_y:3,type:visualization),(col:7,id:AWKRmqWzbE8zvnqZG1Q-,panelIndex:5,row:4,size_x:6,size_y:5,type:visualization)),query:(match_all:()),timeRestore:!t,title:'Case+Dashboard',uiState:(P-1:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-2:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-4:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-5:(vis:(params:(sort:(columnIndex:!n,direction:!n))))),viewMode:view)"></iframe>
+    </div>
+    <div id="support_sla" class="tab-pane fade">
+      <iframe src="http://10.2.53.194:5601/app/kibana#/dashboard/AWKNMKfN8ZbcdccI9I9w?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-30d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:7,id:AWKNKxy-8ZbcdccI9Iv3,panelIndex:2,row:4,size_x:6,size_y:3,type:visualization),(col:1,id:AWKNKiR78ZbcdccI9Itl,panelIndex:3,row:4,size_x:6,size_y:3,type:visualization),(col:7,id:AWKNNbhE8ZbcdccI9JKJ,panelIndex:4,row:1,size_x:6,size_y:3,type:visualization),(col:1,id:AWKNN0hx8ZbcdccI9JN6,panelIndex:5,row:1,size_x:6,size_y:3,type:visualization)),query:(match_all:()),timeRestore:!f,title:'Support+SLA+and+Critical+Customers',uiState:(P-1:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-2:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-3:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-5:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)')))),viewMode:view)"></iframe>
+    </div>
+    <div id="version_adoption" class="tab-pane fade">
+      <iframe src="http://10.2.53.194:5601/app/kibana#/dashboard/AWKMqX6_8ZbcdccI9Dzk?embed=true&_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:5,id:AWKMo_iB8ZbcdccI9Dmn,panelIndex:1,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AWKMowmz8ZbcdccI9Dkc,panelIndex:2,row:4,size_x:6,size_y:8,type:visualization),(col:1,id:AWKMqlE48ZbcdccI9D1Z,panelIndex:3,row:1,size_x:4,size_y:3,type:visualization),(col:8,id:AWKMqt_j8ZbcdccI9D21,panelIndex:4,row:1,size_x:4,size_y:3,type:visualization),(col:7,id:AWKMrFOq8ZbcdccI9D6H,panelIndex:5,row:4,size_x:6,size_y:8,type:visualization)),query:(match_all:()),timeRestore:!t,title:'Version+Adoption+-+Last+7+Days',uiState:(P-1:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-2:(vis:(legendOpen:!f)),P-3:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-4:(vis:(defaultColors:('0+-+100':'rgb(0,104,55)'))),P-5:(vis:(legendOpen:!f))),viewMode:view)"></iframe>
+    </div>
+  </div> -->
+</div>
+
+<!-- <h1 class="page_title">Overview</h1>
+
+<div class="col-sm-12">
+  <iframe [src]="iframeURL1" height="300" width="600"></iframe> -->
+
+<!-- <iframe src="http://prod-kibana-f0792d43402a7116.elb.us-west-2.amazonaws.com:5601/app/kibana#/dashboard/AV-gotTaBE7V2HMVKw61?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(description:'',filters:!(),options:(darkTheme:!f),panels:!((col:4,id:AV-gn3hxw1Mqk2EQj8pA,panelIndex:1,row:1,size_x:3,size_y:3,type:visualization),(col:7,id:AV-gq7TLw1Mqk2EQj8pC,panelIndex:2,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AV-goCU4w1Mqk2EQj8pB,panelIndex:3,row:1,size_x:3,size_y:3,type:visualization),(col:10,id:AV-go8VAyejoK19dZS-8,panelIndex:4,row:1,size_x:3,size_y:3,type:visualization),(col:1,id:AV_K-BNZyejoK19dKx5k,panelIndex:5,row:4,size_x:12,size_y:4,type:visualization)),query:(match_all:()),timeRestore:!t,title:'HTTP-ASUP%20Adoption',uiState:(P-1:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),P-2:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),P-3:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),P-4:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)'))),P-5:(vis:(defaultColors:('0%20-%20100':'rgb(0,104,55)')))),viewMode:view)"
+      *ngIf="firstFrame"></iframe>
+    <iframe [src]="current_url" *ngIf="!firstFrame"></iframe> -->
+<!-- </div> -->
