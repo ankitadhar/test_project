@@ -47,14 +47,10 @@
                         </th>
                         <th style="width: 8%">Action(s)</th>
                 </tr>
-                <tr>
-                        <th colspan="8" *ngIf="assetList.length < 1" class="italic-font">
-                                No Data Found
-                        </th>
-                </tr>
+              
         </thead>
-        <tbody *ngFor="let asset of assetList">
-                <tr>
+        <tbody >
+                <tr *ngFor="let asset of assetList">
                         <td>{{asset._source.SerialNumber}}</td>
                         <td class="ellipsis" [title]="asset._source.Name">{{asset._source.Name}}</td>
                         <td>{{asset._source.Quantity}}</td>
@@ -73,6 +69,11 @@
                                                 <div class="actionItem"><i class="fa fa-caret-right arrow_right"></i><a [href]="asset._source.Tracking_URL__c" target="_blank">Launch Asset Tracker for {{asset._source.Name}}</a></div>
                                         </div>
                                 </div>
+                        </td>
+                </tr>
+                <tr>
+                        <td align="center" colspan="8" *ngIf="assetList.length < 1" class="italic-font">
+                                No Data Found
                         </td>
                 </tr>
         </tbody>

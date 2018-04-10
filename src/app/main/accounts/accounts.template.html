@@ -37,14 +37,9 @@
                         </th>
                         <th>Action(s)</th>
                 </tr>
-                <tr>
-                        <th colspan="6" *ngIf="accountList.length < 1" class="italic-font">
-                                No Data Found
-                        </th>
-                </tr>
         </thead>
-        <tbody *ngFor="let account of accountList">
-                <tr>
+        <tbody >
+                <tr *ngFor="let account of accountList">
                         <td (click)="viewAccount(account)">{{account._source.Name}}</td>
                         <td>{{account._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
                         <td>{{account._source.Type}}</td>
@@ -62,6 +57,11 @@
                                                 </div>
                                         </div>
                                 </div>
+                        </td>
+                </tr>
+                <tr>
+                        <td colspan="6" align="center" *ngIf="accountList.length < 1" class="italic-font">
+                                No Data Found
                         </td>
                 </tr>
         </tbody>

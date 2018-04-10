@@ -1,10 +1,10 @@
 
 .home_icon_cont{
-    position: absolute;
-    top: 0px;
-    /* left: 20px; */
+    padding: 15px 0px;
 }
-
+.page_title{
+    margin-top: 0px !important;
+}
 
 .navigation ul{
 	overflow: hidden;

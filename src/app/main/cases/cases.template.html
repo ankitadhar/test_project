@@ -61,14 +61,10 @@
                                         aria-hidden="true"> </i>
                         </th>
                 </tr>
-                <tr>
-                        <th colspan="10" *ngIf="caseList.length < 1" class="italic-font">
-                                No Data Found
-                        </th>
-                </tr>
+                
         </thead>
-        <tbody *ngFor="let case of caseList">
-                <tr>
+        <tbody >
+                <tr *ngFor="let case of caseList">
                         <td class="ellipsis" [title]="case._source.Id">{{case._source.Id}}</td>
                         <td>{{case._source.CaseNumber}}</td>
                         <td class="ellipsis" [title]="case._source.Owner.Id">{{case._source.Owner.Id}}</td>
@@ -79,6 +75,11 @@
                         <td>{{case._source.CreatedDate | date: 'dd/MM/yyyy'}}</td>
                         <td>{{case._source.ClosedDate | date: 'dd/MM/yyyy'}}</td>
                         <td class="ellipsis" [title]="case._source.ContactEmail">{{case._source.ContactEmail}}</td>
+                </tr>
+                <tr>
+                        <td colspan="10" align="center" *ngIf="caseList.length < 1" class="italic-font">
+                                No Data Found
+                        </td>
                 </tr>
         </tbody>
 </table>
